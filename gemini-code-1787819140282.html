@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу — Алексей и Ангелина</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    colors: {
+                        wedding: {
+                            bg: '#FAF8F5',         /* Молочный / Warm Ivory */
+                            card: '#FFFFFF',       /* Белый */
+                            dark: '#2D2B2A',       /* Мягкий графит */
+                            accent: '#D4A373',     /* Тёплый песочно-золотистый */
+                            muted: '#7A7571',      /* Пастельный серый */
+                            rose: '#E9D8A6',       /* Пастельный шампань */
+                            border: '#E8E2D9'      /* Нежная рамка */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .bg-pattern {
+            background-color: #FAF8F5;
+            background-image: radial-gradient(#E8E2D9 0.8px, transparent 0.8px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-wedding-bg font-sans text-wedding-dark antialiased selection:bg-wedding-accent selection:text-white">
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[90vh] md:min-h-screen flex items-center justify-center p-4 md:p-6 overflow-hidden bg-wedding-dark text-white">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0 opacity-45">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000" alt="Wedding Cover" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="relative z-10 text-center max-w-3xl mx-auto px-2 sm:px-4 py-8">
+            <p class="uppercase tracking-[0.2em] text-[10px] sm:text-xs md:text-sm text-gray-300 mb-2 font-medium">Приглашение на свадьбу</p>
+            
+            <!-- Приветственный блок -->
+            <p class="font-serif italic text-base sm:text-xl md:text-2xl text-wedding-rose mb-6 max-w-lg mx-auto leading-relaxed">
+                Дорогие родные и близкие!<br>Мы рады пригласить вас на наше торжество
+            </p>
+            
+            <!-- Имена обычным регистром (без капса) -->
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-wide mb-4 leading-tight text-white drop-shadow-md">
+                Алексей <span class="text-wedding-accent italic">&amp;</span> Ангелина
+            </h1>
+            
+            <div class="w-12 sm:w-16 h-[1px] bg-wedding-accent mx-auto my-4 sm:my-6"></div>
+            <p class="font-serif italic text-lg sm:text-2xl md:text-3xl text-gray-200 mb-6">4 Сентября 2026</p>
+            
+            <a href="#rsvp" class="inline-block border border-white/80 hover:bg-white hover:text-wedding-dark transition-all duration-300 px-6 sm:px-8 py-3 rounded-full text-[10px] sm:text-xs uppercase tracking-[0.2em] font-medium">
+                Подтвердить присутствие
+            </a>
+        </div>
+    </section>
+
+    <!-- TIMER SECTION -->
+    <section id="timer" class="py-10 sm:py-16 md:py-20 bg-wedding-card border-b border-wedding-border">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl mb-2">До нашего дня осталось</h2>
+            <p class="text-xs sm:text-sm text-wedding-muted mb-8">Отсчитываем каждое мгновение</p>
+            
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 md:gap-6 max-w-xl mx-auto">
+                <div class="p-2 sm:p-5 rounded-2xl bg-wedding-bg border border-wedding-border/80">
+                    <span id="days" class="font-serif text-xl sm:text-4xl md:text-5xl font-semibold text-wedding-dark block">00</span>
+                    <span class="text-[8px] sm:text-xs uppercase tracking-widest text-wedding-muted mt-1 block">дней</span>
+                </div>
+                <div class="p-2 sm:p-5 rounded-2xl bg-wedding-bg border border-wedding-border/80">
+                    <span id="hours" class="font-serif text-xl sm:text-4xl md:text-5xl font-semibold text-wedding-dark block">00</span>
+                    <span class="text-[8px] sm:text-xs uppercase tracking-widest text-wedding-muted mt-1 block">часов</span>
+                </div>
+                <div class="p-2 sm:p-5 rounded-2xl bg-wedding-bg border border-wedding-border/80">
+                    <span id="minutes" class="font-serif text-xl sm:text-4xl md:text-5xl font-semibold text-wedding-dark block">00</span>
+                    <span class="text-[8px] sm:text-xs uppercase tracking-widest text-wedding-muted mt-1 block">минут</span>
+                </div>
+                <div class="p-2 sm:p-5 rounded-2xl bg-wedding-bg border border-wedding-border/80">
+                    <span id="seconds" class="font-serif text-xl sm:text-4xl md:text-5xl font-semibold text-wedding-dark block">00</span>
+                    <span class="text-[8px] sm:text-xs uppercase tracking-widest text-wedding-muted mt-1 block">секунд</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR STORY SECTION -->
+    <section class="py-12 sm:py-24 bg-wedding-bg bg-pattern">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-10 sm:mb-16">
+                <span class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-wedding-muted block mb-2">Немного истории</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl">Как всё начиналось</h2>
+            </div>
+
+            <div class="space-y-10 sm:space-y-16">
+                <!-- Item 1 -->
+                <div class="flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12">
+                    <div class="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-sm border border-wedding-border">
+                        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=1000" alt="Первая встреча" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-full md:w-1/2 text-center md:text-left px-2">
+                        <span class="text-wedding-accent font-serif text-xl sm:text-2xl italic block mb-1">Знакомство</span>
+                        <h3 class="font-serif text-xl sm:text-2xl mb-2">Первая вспышка</h3>
+                        <p class="text-wedding-muted leading-relaxed text-xs sm:text-sm">
+                            То самое первое впечатление, когда простое «Привет» превращается в долгие вечерние разговоры обо всём на свете.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-6 sm:gap-8 md:gap-12">
+                    <div class="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-sm border border-wedding-border">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=1000" alt="Предложение" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-full md:w-1/2 text-center md:text-right px-2">
+                        <span class="text-wedding-accent font-serif text-xl sm:text-2xl italic block mb-1">Предложение</span>
+                        <h3 class="font-serif text-xl sm:text-2xl mb-2">Главное «Да!»</h3>
+                        <p class="text-wedding-muted leading-relaxed text-xs sm:text-sm">
+                            Особенный момент, полный искреннего волнения, тепла и решения идти дальше только вместе.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM & LOCATION SECTION -->
+    <section class="py-12 sm:py-24 bg-wedding-card border-t border-wedding-border">
+        <div class="max-w-2xl mx-auto px-4">
+            <div class="text-center mb-10 sm:mb-16">
+                <span class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-wedding-muted block mb-2">Детали встречи</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl">Время сбора</h2>
+            </div>
+
+            <div class="relative border-l border-wedding-accent/40 ml-4 sm:ml-24 space-y-10">
+                <!-- Event -->
+                <div class="relative pl-6 sm:pl-10">
+                    <div class="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-wedding-accent border-2 border-white"></div>
+                    <span class="font-serif text-xl sm:text-2xl font-semibold block sm:absolute sm:-left-24 sm:top-0 sm:text-right w-16 text-wedding-accent">15:00</span>
+                    <h3 class="font-serif text-xl sm:text-2xl mb-2">Сбор гостей</h3>
+                    <p class="text-sm text-wedding-dark font-medium mb-3">Банкетный зал Panorama</p>
+                    <a href="https://maps.app.goo.gl/1pNPcvVWFzb1Bn2t6" target="_blank" class="inline-flex items-center text-xs font-semibold text-wedding-accent underline hover:text-wedding-dark transition">
+                        Открыть карту
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP FORM SECTION -->
+    <section id="rsvp" class="py-12 sm:py-24 bg-wedding-dark text-white">
+        <div class="max-w-xl mx-auto px-4">
+            <div class="text-center mb-8 sm:mb-10">
+                <span class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-gray-400 block mb-2">Подтверждение</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl mb-3">Анкета гостя</h2>
+                <p class="text-xs sm:text-sm text-gray-400">Пожалуйста, подтвердите ваше присутствие.</p>
+            </div>
+
+            <form id="rsvpForm" class="space-y-6">
+                <div>
+                    <label class="block text-[10px] sm:text-xs uppercase tracking-widest text-gray-300 mb-1.5">Ваше имя и фамилия *</label>
+                    <input type="text" required placeholder="Имя и Фамилия..." class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-wedding-accent transition">
+                </div>
+
+                <div>
+                    <label class="block text-[10px] sm:text-xs uppercase tracking-widest text-gray-300 mb-2">Присутствие *</label>
+                    <div class="space-y-3 text-xs sm:text-sm">
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="radio" name="attendance" value="yes" checked class="accent-wedding-accent">
+                            <span>Приду</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="radio" name="attendance" value="no" class="accent-wedding-accent">
+                            <span>Не приду</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="flex items-center space-x-3 cursor-pointer text-xs sm:text-sm">
+                        <input type="checkbox" id="notAloneCheckbox" class="w-4 h-4 rounded accent-wedding-accent focus:ring-0">
+                        <span class="text-gray-300">Буду не один</span>
+                    </label>
+                </div>
+
+                <div id="companionField" class="hidden transition-all duration-300">
+                    <label class="block text-[10px] sm:text-xs uppercase tracking-widest text-gray-300 mb-1.5">Сопровождение</label>
+                    <input type="text" placeholder="Укажите с кем будете" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-wedding-accent transition">
+                </div>
+
+                <button type="submit" class="w-full bg-wedding-accent text-white py-3.5 rounded-xl text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white hover:text-wedding-dark transition duration-300 shadow-md">
+                    Отправить ответ
+                </button>
+            </form>
+            
+            <div id="successMessage" class="hidden text-center py-8">
+                <p class="font-serif text-3xl text-wedding-accent mb-2">Спасибо!</p>
+                <p class="text-sm text-gray-300">Ваш ответ успешно сохранен!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 bg-wedding-dark text-center text-gray-500 text-[11px] border-t border-white/10">
+        <p class="font-serif text-lg text-gray-300 mb-1">Алексей &amp; Ангелина</p>
+        <p>© 04.09.2026 • Ждем вас!</p>
+    </footer>
+
+    <!-- JS SCRIPTS -->
+    <script>
+        // Countdown Timer Script (Target: September 4, 2026 15:00)
+        const weddingDate = new Date("September 4, 2026 15:00:00").getTime();
+
+        const updateTimer = () => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById("timer").innerHTML = "<p class='text-2xl font-serif'>Свадьба состоялась!</p>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+        };
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Checkbox Toggle for Companion Field
+        const checkbox = document.getElementById('notAloneCheckbox');
+        const companionField = document.getElementById('companionField');
+
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                companionField.classList.remove('hidden');
+            } else {
+                companionField.classList.add('hidden');
+            }
+        });
+
+        // Simple Form Handler
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('rsvpForm').classList.add('hidden');
+            document.getElementById('successMessage').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
