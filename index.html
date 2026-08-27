@@ -262,11 +262,37 @@
             }
         });
 
-        // Simple Form Handler
+        // Новый обработчик формы с отправкой в Google Таблицу
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvgOn-XyD9Hyj-dz1O8hmdkRXD0rX096mxnuSvBRur6MJVKvnRtp5C19y-mrcgKbyt/exec'; // Вставьте сюда свою ссылку из Apps Script
+
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            document.getElementById('rsvpForm').classList.add('hidden');
-            document.getElementById('successMessage').classList.remove('hidden');
+            
+            const btn = this.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.innerText = 'Отправка...';
+
+            const formData = {
+                name: this.querySelector('input[type="text"]').value,
+                attendance: this.querySelector('input[name="attendance"]:checked').value === 'yes' ? 'Приду' : 'Не приду',
+                companion: checkbox.checked ? companionField.querySelector('input').value : 'Одна/Один'
+            };
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                document.getElementById('rsvpForm').classList.add('hidden');
+                document.getElementById('successMessage').classList.remove('hidden');
+            })
+            .catch(error => {
+                alert('Произошла ошибка при отправке. Попробуйте еще раз.');
+                btn.disabled = false;
+                btn.innerText = 'Отправить ответ';
+            });
         });
     </script>
 </body>
